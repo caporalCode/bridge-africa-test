@@ -18,5 +18,9 @@ export const NOTYF = new Notyf({
 			type: 'error',
 			background: 'indianred',
 		},
+		{
+			type: 'warning',
+			background: '#faa307',
+		},
 	],
 })

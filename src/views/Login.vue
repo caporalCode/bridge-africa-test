@@ -84,8 +84,11 @@ export default {
   methods: {
     handleLogin() {
       if (this.$refs.form.validate()) {
-        if (this.userLocal===undefined) {
-          NOTYF.info("This account don't exist, please subscribe!");
+        if (!this.userLocal) {
+          NOTYF.open({
+            type: "warning",
+            message: "This account don't exist, please subscribe!",
+          });
           return;
         }
         if (this.email === this.userLocal.email) {
@@ -94,7 +97,7 @@ export default {
             this.userLocal.password
           );
           if (compare) {
-            this.$store.commit('setStatus', 'connect')
+            this.$store.commit("setStatus", "connect");
             NOTYF.success("Login success!");
             this.$router.replace("/app");
           } else {
